@@ -206,7 +206,10 @@ Shader "Custom/ControllableReveal"
 				c.a = saturate(opacity + c.a);
 			}
 			
-			c.rgb = lerp( AudioLinkData( IN.uv_MainTex * int2( 128,64 ) ).rgb, c.rgb, c.a );
+			// lol, I just defeated the point of this shader.
+			// c.rgb = lerp( AudioLinkData( IN.uv_MainTex * int2( 128,64 ) ).rgb, c.rgb, c.a );
+			c.rgb = AudioLinkData( IN.uv_MainTex * int2( 128,64 )).rgb;
+			c.a = 1;
 
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
@@ -214,6 +217,7 @@ Shader "Custom/ControllableReveal"
             o.Smoothness = _Glossiness;
 			o.Emission = c.rgb * _EmissionQty;
             o.Alpha = c.a;
+
         }
         ENDCG
     }
