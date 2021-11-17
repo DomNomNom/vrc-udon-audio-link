@@ -442,6 +442,7 @@ SubShader {
             half y = ray.y / SKY_GROUND_THRESHOLD;
         #else
             half y = IN.skyGroundFactor;
+            half3 ray = 0;
         #endif
 		
             // if we did precalculate color in vprog: just do lerp between them

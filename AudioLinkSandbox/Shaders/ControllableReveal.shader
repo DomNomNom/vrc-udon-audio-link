@@ -211,6 +211,12 @@ Shader "Custom/ControllableReveal"
 			c.rgb = AudioLinkData( IN.uv_MainTex * int2( 128,64 )).rgb;
 			c.a = 1;
 
+			if (IN.uv_MainTex.x < .03 &&  IN.uv_MainTex.y < .03) {
+				c.r = AudioLinkIsAvailable();
+				c.b = !AudioLinkIsAvailable();
+				c.g = 0;
+			}
+
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
